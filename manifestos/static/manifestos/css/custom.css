@@ -1,0 +1,47 @@
+/* Site-wide Bootstrap3 tweaks. Consider adding ":200,300" to the
+    end of the Open Sans font for a fancier (less weighted) look.
+-------------------------------------------------- */
+
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300');
+
+html {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+body {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+#logo {
+    margin-top: -20px;
+}
+
+i#plus {
+    padding-left: 5px;
+    font-size: .7em;
+}
+
+th.art {
+    text-align: center;
+}
+
+td.art {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.top-buffer {
+    margin-top: 10px;
+}
+
+.top-border {
+    border-top: solid 1px #d3d3d3;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.top {
+    vertical-align: top;
+}

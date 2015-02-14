@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+Performance Bridge Media<small class="pull-right">what we do</small>
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    {% if user.is_superuser %}
+    <blockquote>
+        <p>
+            Tomorrow, and tomorrow, and tomorrow,<br>
+            Creeps in this petty pace from day to day<br>
+            To the last syllable of recorded time,<br>
+            And all our yesterdays have lighted fools<br>
+            The way to dusty death. Out, out, brief candle!<br>
+            Life's but a walking shadow, a poor player<br>
+            That struts and frets his hour upon the stage<br>
+            And then is heard no more: it is a tale<br>
+            Told by an idiot, full of sound and fury,<br>
+            Signifying nothing.<br>
+        </p>
+        <footer><cite title="Macbeth"><a href="http://en.wikipedia.org/wiki/Tomorrow_and_tomorrow_and_tomorrow">Macbeth</a></cite></footer>
+    </blockquote>
+    {% else %}
+
+    {% endif %}
+</div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock %}

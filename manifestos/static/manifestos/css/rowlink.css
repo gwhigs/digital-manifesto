@@ -1,0 +1,21 @@
+/*!
+ * Clipped straight from:
+ * Jasny Bootstrap v3.1.3 (http://jasny.github.io/bootstrap)
+ * Copyright 2012-2014 Arnold Daniels
+ * Licensed under Apache-2.0 (https://github.com/jasny/bootstrap/blob/master/LICENSE)
+ */
+
+.table.rowlink td:not(.rowlink-skip),.table .rowlink td:not(.rowlink-skip) {
+    cursor: pointer;
+}
+
+.table.rowlink td:not(.rowlink-skip) a,.table .rowlink td:not(.rowlink-skip) a {
+    color: inherit;
+    font: inherit;
+    text-decoration: inherit;
+}
+
+.table-hover.rowlink tr:hover td,.table-hover .rowlink tr:hover td {
+    /* Updated BG color here to be a slightly lighter grey */
+    background-color: #e9e9e9;
+}

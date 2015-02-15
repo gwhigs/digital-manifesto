@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 import autocomplete_light
 from taggit.models import Tag
 
-from .models import Manifesto, Collection
+from . import models
 
 # Taggit integration
 autocomplete_light.register(
@@ -12,9 +12,9 @@ autocomplete_light.register(
         'placeholder': 'Start typing to search.'
     }
 )
-# This will generate and register a ShowAutocomplete class
+# This will generate and register a ManifestoAutocomplete class
 autocomplete_light.register(
-    Manifesto,
+    models.Manifesto,
     # Just like in ModelAdmin.search_fields
     search_fields=['name'],
     # For javascript attribute widget.autocomplete.placeholder
@@ -24,9 +24,9 @@ autocomplete_light.register(
     },
 )
 
-# This will generate and register a HostAutocomplete class
+# This will generate and register a CollectionAutocomplete class
 autocomplete_light.register(
-    Collection,
+    models.Collection,
     search_fields=['name'],
     attrs={
         'data-autocomplete-minimum-characters': 2,

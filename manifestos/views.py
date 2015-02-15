@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.views import generic
 
-# Create your views here.
+from . import models
+
+
+class ManifestoListView(generic.ListView):
+    model = models.Manifesto
+
+
+class ManifestoDetailView(generic.DetailView):
+    model = models.Manifesto

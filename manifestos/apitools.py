@@ -20,12 +20,12 @@ def omeka_api_request(resource='items', api_key=OMEKA_KEY, endpoint=OMEKA_ENDPOI
     return resp
 
 
-def get_all_pages(pages):
+def get_all_pages(pages, resource='items'):
     _data = []
     page = 1
     while page <= pages:
         print('Getting results page ' + str(page) + ' of ' + str(pages) + ' ...')
-        params = {'page': str(page), 'per_page': '50'}
+        params = {'page': str(page), 'per_page': '50', 'resource': resource}
         resp = omeka_api_request(**params)
         _data.extend(resp.json())
         page += 1
@@ -38,7 +38,7 @@ def get_all(resource='items'):
     results = int(response.headers['omeka-total-results'])
     print('{} results found.'.format(results))
     pages = math.ceil(results/50)
-    _data = get_all_pages(pages)
+    _data = get_all_pages(pages, resource=resource)
     return _data
 
 
@@ -53,7 +53,10 @@ def handle_omeka(omeka_data):
             for element_text in obj['element_texts']:
                 key = element_text['element']['name']
                 value = element_text['text']
-                obj[key] = value
+                try:
+                    obj[key] += '\n' + value
+                except KeyError:
+                    obj[key] = value
         # Flatten out other misc dicts
         for obj_key, obj_val in obj.copy().items():
             if obj[obj_key] and type(obj_val) is dict:

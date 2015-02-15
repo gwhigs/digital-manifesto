@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
+import os
+
 import django.contrib.messages
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -49,6 +51,7 @@ INSTALLED_APPS = (
     'floppyforms',
     'simple_history',
     'storages',
+    'sorl.thumbnail',
     'debug_toolbar.apps.DebugToolbarConfig',
 )
 

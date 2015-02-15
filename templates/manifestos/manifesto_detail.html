@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block header %}{{ manifesto.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if manifesto.art_file %}
+        <p><a href="{{ manifesto.art_file.url }}"><img src="{{ manifesto.art_file.url }}" class="img-rounded"></a></p>
+    {% endif %}
+    <h3>Subject</h3>
+    <p>{{ manifesto.subject }}</p>
+    <h3>Description</h3>
+    <p>{{ manifesto.description }}</p>
+    <h3>Creator</h3>
+    <p>{{ manifesto.creator }}</p>
+    <h3>Source</h3>
+    <p><a href="{{ manifesto.source }}">{{ manifesto.source }}</a></p>
+    <h3>Date</h3>
+    <p>{{ manifesto.date }}</p>
+    <h3>Language</h3>
+    <p>{{ manifesto.language|upper }}</p>
+    <h3>Collection</h3>
+    <p>{{ manifesto.collection.name }}</p>
+    <h3>Tags</h3>
+    <p>{{ manifesto.tags.all|join:", " }}</p>
+    {% if manifesto.text %}
+        <h3>Text</h3>
+        <pre>{{ manifesto.text }}</pre>
+    {% endif %}
+</div>
+{% endblock content %}

@@ -30,7 +30,7 @@
 
     {% block nav %}
     <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{% url 'index' %}">
-                    {% block branding %}DMA{% endblock %}
+                    {% block branding %}<strong>Digital Manifesto Archive</strong>{% endblock %}
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -49,6 +49,8 @@
                         <li><a href="{% url 'about' %}">About</a></li>
                         <li><a href="{% url 'contact' %}">Contact</a></li>
                         <li><a href="{% url 'news' %}">News</a></li>
+                        <li><a href="{% url 'projects' %}">Projects We Like</a></li>
+                        <li><a href="{% url 'resources' %}">Resources</a></li>
                     </ul>
                 {% endblock %}
                 {% block navright %}

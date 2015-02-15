@@ -26,10 +26,8 @@
 			<tr>
 				<th class="art">Art</th>
 				<th>Name</th>
-				<th>Type</th>
-				<th>Vendor</th>
-				<th>Host</th>
 				<th>Description</th>
+				<th>Tags</th>
 			</tr>
 		</thead>
 		<tbody data-link="row" class="rowlink">
@@ -38,19 +36,15 @@
 			<td class="art">
                 <a href="{{ manifesto.get_absolute_url }}">
                 {% if manifesto.art_file %}
-                    {% thumbnail manifesto.art_file "x64" as im %}
+                    {% thumbnail manifesto.art_file "113x64" crop="center" as im %}
                         <img src="{{ im.url }}" class="img-rounded">
                     {% endthumbnail %}
-                {% elif manifesto.art_external %}
-                    <img src="{{ manifesto.art_external }}" class="img-rounded" width="64" height="64">
                 {% endif %}
                 </a>
             </td>
-			<td>{{ manifesto.name }}</td>
-			<td>{{ manifesto.platform }}</td>
-			<td>{{ manifesto.default_vendor }}</td>
-			<td>{{ manifesto.host }}</td>
+			<td><h3>{{ manifesto.name }}</h3></td>
 			<td>{{ manifesto.description|truncatechars:400 }}</td>
+			<td>{{ manifesto.tags.all|join:", " }}</td>
 		</tr>
 		{% endfor %}
 		</tbody>
@@ -62,7 +56,7 @@
 /* Add DataTables functionality. See http://www.datatables.net */
 $(function() {
     $("#manifestoTable").dataTable({
-        "order": [[1, "asc"]],
+        "order": [],
         "columnDefs": [
                 { "orderable": false, "targets": 0 }
         ]

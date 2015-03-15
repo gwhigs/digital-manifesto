@@ -14,16 +14,23 @@ class Collection(TimeStampedModel):
     description = models.TextField(blank=True)
     contributor = models.TextField(blank=True)
 
+    def get_absolute_url(self):
+        return reverse('manifestos:collection_detail', args=[str(self.id)])
+
+    def get_most_recent_manifesto(self):
+        manifesto_list = Manifesto.objects.defer('text').filter(collection=self).order_by('-date')
+        return manifesto_list[0]
+
     @python_2_unicode_compatible
     def __str__(self):
         return self.name
 
 
 class Manifesto(TimeStampedModel):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)  # needs html tag functionality
     creator = models.TextField(blank=True)
     date = models.CharField(max_length=255, blank=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True)  # needs html tag functionality
     art_height = models.PositiveSmallIntegerField(blank=True, null=True)
     art_width = models.PositiveSmallIntegerField(blank=True, null=True)
     art_file = sorl.thumbnail.ImageField(
@@ -35,12 +42,12 @@ class Manifesto(TimeStampedModel):
     )
     duration = models.CharField(max_length=255, blank=True)
     language = models.CharField(max_length=7, choices=settings.LANGUAGES, default='en')
-    publisher = models.CharField(blank=True, max_length=255)
-    rights = models.TextField(blank=True)
+    publisher = models.CharField(blank=True, max_length=255)  # needs html tag functionality
+    rights = models.TextField(blank=True)  # needs html tag functionality
     source = models.URLField(blank=True)
     added = models.DateTimeField(null=True, blank=True)
     subject = models.CharField(max_length=255, blank=True)
-    text = models.TextField(blank=True)
+    text = models.TextField(blank=True)  # needs html tag functionality
     collection = models.ForeignKey(Collection, null=True, blank=True)
     featured = models.BooleanField(default=False)
     tags = TaggableManager(blank=True)

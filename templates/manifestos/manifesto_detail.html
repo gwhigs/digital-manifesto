@@ -7,6 +7,10 @@
     {% if manifesto.art_file %}
         <p><a href="{{ manifesto.art_file.url }}"><img src="{{ manifesto.art_file.url }}" class="img-rounded"></a></p>
     {% endif %}
+    {% if manifesto.text %}
+        <h3>Text</h3>
+        <pre>{{ manifesto.text }}</pre>
+    {% endif %}
     <h3>Subject</h3>
     <p>{{ manifesto.subject }}</p>
     <h3>Description</h3>
@@ -23,9 +27,5 @@
     <p>{{ manifesto.collection.name }}</p>
     <h3>Tags</h3>
     <p>{{ manifesto.tags.all|join:", " }}</p>
-    {% if manifesto.text %}
-        <h3>Text</h3>
-        <pre>{{ manifesto.text }}</pre>
-    {% endif %}
 </div>
 {% endblock content %}

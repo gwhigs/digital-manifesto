@@ -75,7 +75,7 @@ SYNC_MODELS = [
            'Title': ('name', strip_tags),  # (django_field_name, conversion_func)
            'Creator': ('creator', strip_tags),
            'Date': ('date', None),
-           'Description': ('description', strip_tags),
+           'Description': ('description', None),
            'Duration': ('duration', None),
            'Language': ('language', str.lower),
            'Publisher': ('publisher', None),

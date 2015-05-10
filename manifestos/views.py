@@ -1,9 +1,10 @@
 from django.views import generic
+from braces.views import SelectRelatedMixin, PrefetchRelatedMixin
 
-from . import models, mixins
+from . import models
 
 
-class ManifestoListView(mixins.PrefetchRelatedMixin, generic.ListView):
+class ManifestoListView(PrefetchRelatedMixin, generic.ListView):
     model = models.Manifesto
     prefetch_related = ['tags']
     queryset = models.Manifesto.objects.defer('text')
@@ -19,9 +20,11 @@ class ManifestoDetailView(generic.DetailView):
     model = models.Manifesto
 
 
-class CollectionListView(generic.ListView):
+class CollectionListView(PrefetchRelatedMixin, generic.ListView):
     model = models.Collection
+    prefetch_related = ['manifesto_set']
 
 
-class CollectionDetailView(generic.DetailView):
+class CollectionDetailView(PrefetchRelatedMixin, generic.DetailView):
     model = models.Collection
+    prefetch_related = ['manifesto_set', 'manifesto_set__tags']

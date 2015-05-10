@@ -12,14 +12,15 @@ import sorl.thumbnail
 class Collection(TimeStampedModel):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
+    creator = models.TextField(blank=True)
     contributor = models.TextField(blank=True)
+    subject = models.TextField(blank=True)
 
     def get_absolute_url(self):
         return reverse('manifestos:collection_detail', args=[str(self.id)])
 
     def get_most_recent_manifesto(self):
-        manifesto_list = Manifesto.objects.defer('text').filter(collection=self).order_by('-date')
-        return manifesto_list[0]
+        return self.manifesto_set.first()
 
     @python_2_unicode_compatible
     def __str__(self):

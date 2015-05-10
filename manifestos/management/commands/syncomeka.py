@@ -62,9 +62,10 @@ SYNC_MODELS = [
             'id': ('id', int),
             'Title': ('name', strip_tags),
             'added': ('added', convert_date),
+            'Creator': ('creator', strip_tags),
             'Description': ('description', strip_tags),
             'Contributor': ('contributor', strip_tags),
-
+            'Subject': ('subject', strip_tags),
         }
     ),
     (

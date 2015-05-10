@@ -24,7 +24,7 @@
     <h3>Language</h3>
     <p>{{ manifesto.language|upper }}</p>
     <h3>Collection</h3>
-    <p>{{ manifesto.collection.name }}</p>
+    <a href="{{ manifesto.collection.get_absolute_url }}"><p>{{ manifesto.collection.name }}</p></a>
     <h3>Tags</h3>
     <p>{{ manifesto.tags.all|join:", " }}</p>
 </div>

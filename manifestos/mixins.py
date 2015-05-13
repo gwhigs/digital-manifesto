@@ -1,46 +1,7 @@
 from __future__ import unicode_literals
 from django.contrib import messages
 
-from django.core.exceptions import ImproperlyConfigured
 from django.db import models
-
-
-class PrefetchRelatedMixin(object):
-    """
-    Allows a CBV to use prefetch_related on their queryset.
-    """
-    prefetch_related = None
-
-    def get_queryset(self):
-        if self.prefetch_related is None:
-            msg = ('{} is missing the prefetch_related property. This must '
-                   'be a tuple or list.').format(self.__class__.__name__)
-            raise ImproperlyConfigured(msg)
-
-        if not isinstance(self.prefetch_related, (tuple, list)):
-            msg = ("{}'s prefetch_related property "
-                   'must be a tuple or list.').format(self.__class__.__name__)
-            raise ImproperlyConfigured(msg)
-
-        queryset = super(PrefetchRelatedMixin, self).get_queryset()
-        return queryset.prefetch_related(*self.prefetch_related)
-
-
-class SelectRelatedMixin(object):
-    """
-    Allows a CBV to use select_related on their queryset.
-    """
-    select_related = None
-
-    def get_queryset(self):
-        if self.select_related is None:
-            msg = ('{} is missing the select_related property. This must '
-                   'be a tuple or list.').format(self.__class__.__name__)
-            raise ImproperlyConfigured(msg)
-
-        queryset = super(SelectRelatedMixin, self).get_queryset()
-
-        return queryset.select_related(self.select_related)
 
 
 class ContactInfoMixin(models.Model):

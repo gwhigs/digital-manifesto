@@ -105,11 +105,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -144,6 +139,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Storages (s3 functionality)
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'manifestos.custom_storages.StaticS3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'manifestos.custom_storages.MediaS3BotoStorage'
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 

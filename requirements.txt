@@ -10,6 +10,7 @@ django-grappelli==2.6.2
 django-model-utils==2.2
 django-simple-history==1.5.2
 django-taggit==0.12.2
+gunicorn==19.3.0
 psycopg2==2.5.4
 python-dateutil==2.4.0
 pytz==2014.9

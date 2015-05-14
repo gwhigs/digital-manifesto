@@ -1,1 +1,1 @@
-web: gunicorn pbridge.wsgi --log-file -
+web: gunicorn digitalmanifesto.wsgi --log-file -

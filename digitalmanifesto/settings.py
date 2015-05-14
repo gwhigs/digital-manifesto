@@ -28,7 +28,15 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+# HTTPS settings
+# CSRF_COOKIE_SECURE = True
+#
+# SESSION_COOKIE_SECURE = True
+
+ALLOWED_HOSTS = [
+    '.herokuapp.com',
+    '.digitalmanifesto.net',
+]
 
 
 # Application definition

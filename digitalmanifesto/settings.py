@@ -38,6 +38,10 @@ ALLOWED_HOSTS = [
     '.digitalmanifesto.net',
 ]
 
+ADMINS = [
+    'gwhigs@gmail.com'
+]
+
 
 # Application definition
 

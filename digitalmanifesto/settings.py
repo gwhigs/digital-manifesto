@@ -43,7 +43,7 @@ ADMINS = [
     ('Graham Higgins', 'gwhigs@gmail.com'),
 ]
 
-# CREDIT TO https://github.com/jordn/heroku-django-s3/blob/master/djangoproject/settings.py
+# CREDIT TO https://github.com/jordn/heroku-django-s3/
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
@@ -66,6 +66,13 @@ LOGGING = {
         },
     }
 }
+
+# Sendgrid settings
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME')
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Application definition
 

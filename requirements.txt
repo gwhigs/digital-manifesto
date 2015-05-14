@@ -12,6 +12,7 @@ django-simple-history==1.6.1
 django-taggit==0.14.0
 django-storages-redux==1.2.3
 gunicorn==19.3.0
+sendgrid>=0.5.0
 psycopg2==2.5.4
 python-dateutil==2.4.0
 pytz==2014.9

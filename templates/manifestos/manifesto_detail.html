@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block header %}{{ manifesto.name }}{% endblock %}
+{% block header %}{{ manifesto.name|safe }}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -9,12 +9,12 @@
     {% endif %}
     {% if manifesto.text %}
         <h3>Text</h3>
-        <pre>{{ manifesto.text }}</pre>
+        <pre>{{ manifesto.text|safe }}</pre>
     {% endif %}
     <h3>Subject</h3>
-    <p>{{ manifesto.subject }}</p>
+    <p>{{ manifesto.subject|safe }}</p>
     <h3>Description</h3>
-    <p>{{ manifesto.description }}</p>
+    <p>{{ manifesto.description|safe }}</p>
     <h3>Creator</h3>
     <p>{{ manifesto.creator }}</p>
     <h3>Source</h3>

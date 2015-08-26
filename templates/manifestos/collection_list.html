@@ -35,10 +35,16 @@
 		<tr>
 			<td class="art">
                 <a href="{{ collection.get_absolute_url }}">
-                {% if collection.get_most_recent_manifesto.art_file %}
-                    {% thumbnail collection.get_most_recent_manifesto.art_file "113x64" crop="center" as im %}
+                {% if collection.art_file %}
+                    {% thumbnail collection.art_file "113x64" crop="center" as im %}
                         <img src="{{ im.url }}" class="img-rounded">
                     {% endthumbnail %}
+                {% else %}
+                    {% if collection.get_most_recent_manifesto.art_file %}
+                        {% thumbnail collection.get_most_recent_manifesto.art_file "113x64" crop="center" as im %}
+                            <img src="{{ im.url }}" class="img-rounded">
+                        {% endthumbnail %}
+                    {% endif %}
                 {% endif %}
                 </a>
             </td>
@@ -53,7 +59,7 @@
 </div>
 
 <script>
-/* Add DataTables functionality. See http://www.datatables.net */
+/* DataTables functionality. See http://www.datatables.net */
 $(function() {
     $("#collectionTable").dataTable({
         "order": [],

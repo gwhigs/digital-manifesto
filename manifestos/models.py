@@ -7,6 +7,7 @@ from model_utils.models import TimeStampedModel
 from simple_history.models import HistoricalRecords
 from taggit.managers import TaggableManager
 import sorl.thumbnail
+from featureditem.fields import FeaturedField
 
 
 class Collection(TimeStampedModel):
@@ -15,6 +16,24 @@ class Collection(TimeStampedModel):
     creator = models.TextField(blank=True)
     contributor = models.TextField(blank=True)
     subject = models.TextField(blank=True)
+    art_height = models.PositiveSmallIntegerField(
+        blank=True,
+        null=True,
+        help_text='automatically populated when file is uploaded, leave blank'
+    )
+    art_width = models.PositiveSmallIntegerField(
+        blank=True,
+        null=True,
+        help_text='automatically populated when file is uploaded, leave blank'
+    )
+    art_file = sorl.thumbnail.ImageField(
+        'splash art file',
+        upload_to='img',
+        blank=True,
+        width_field='art_width',
+        height_field='art_height',
+    )
+    featured = FeaturedField()
 
     def get_absolute_url(self):
         return reverse('manifestos:collection_detail', args=[str(self.id)])
@@ -52,6 +71,7 @@ class Manifesto(TimeStampedModel):
     collection = models.ForeignKey(Collection, null=True, blank=True)
     featured = models.BooleanField(default=False)
     tags = TaggableManager(blank=True)
+    featured = FeaturedField()
     history = HistoricalRecords()
 
     def get_absolute_url(self):

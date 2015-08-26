@@ -12,4 +12,15 @@ class ManifestoAdmin(SimpleHistoryAdmin):
     list_display = ('name', )
 
 
-admin.site.register(Collection)
+@admin.register(Collection)
+class CollectionAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+    fields = (
+        'name',
+        'description',
+        'creator',
+        'contributor',
+        'subject',
+        'art_file',
+        'featured',
+    )

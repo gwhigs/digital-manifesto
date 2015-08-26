@@ -1,13 +1,36 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load thumbnail %}
 
 {% block header %}The Digital Manifesto Archive{% endblock header %}
 
 {% block content %}
-<div class="container">
-	<img src="{% static 'manifestos/img/gorilla.png' %}" class="img-responsive center-block">
-    <h3 class="text-center">Critical Making</h3>
-	<p class="text-center">Check out our newest collection on <a href="http://www.digitalmanifesto.net/manifestos/collections/2/"> Critical Making</a></p>  
+<div class="container" id="news">
+<!-- Any news or updates can go here -->
+
+</div>
+<div class="container" id="featured">
+    <h2>Featured Collection</h2>
+        <div>
+            <a href="{{ collection.get_absolute_url }}">
+                <h3 class="text-center">{{ collection.name|title }}</h3>
+            </a>
+            <a href="{{ collection.get_absolute_url }}">
+            {% if collection.art_file %}
+                <img src="{{ collection.art_file.url }}" class="img-responsive img-rounded center-block">
+            {% else %}
+                {% if collection.get_most_recent_manifesto.art_file %}
+                    {% thumbnail collection.get_most_recent_manifesto.art_file "150x150" crop="center" as im %}
+                        <img src="{{ im.url }}" class="img-responsive center-block">
+                    {% endthumbnail %}
+                {% endif %}
+            {% endif %}
+            </a>
+        </div>
+        <div>
+            <br/>
+            <p class="text-center">{{ collection.description }}</p>
+        </div>
 </div>
   
 {% endblock content %}

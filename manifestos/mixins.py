@@ -32,8 +32,6 @@ class SuccessMessageMixin(object):
     A mixin for gathering code that is common to create and update views.
     """
 
-    exclude = []
-
     @property
     def success_msg(self):
         return NotImplemented

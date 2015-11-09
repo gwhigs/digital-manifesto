@@ -69,7 +69,6 @@ class Manifesto(TimeStampedModel):
     subject = models.CharField(max_length=255, blank=True)
     text = models.TextField(blank=True)  # needs html tag functionality
     collection = models.ForeignKey(Collection, null=True, blank=True)
-    featured = models.BooleanField(default=False)
     tags = TaggableManager(blank=True)
     featured = FeaturedField()
     history = HistoricalRecords()

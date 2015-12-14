@@ -1,11 +1,27 @@
 """
 Django settings for digitalmanifesto project.
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+The following additional values must be set, either in a local_settings.py
+(development) or with environment variables (production):
+    SECRET_KEY
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
+    AWS_STORAGE_BUCKET_NAME
+    DATABASE_URL
+    DB_HOST
+    DB_NAME
+    DB_PASSWORD
+    DB_PORT
+    DB_USER
+    OMEKA_API_KEY
 
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
+In addition, the following Heroku addons (along with their default env vars)
+are required in production:
+    SendGrid
+    Soon:
+        Heroku Redis:
+            heroku addons:create heroku-redis:free --timeout 60 --maxmemory volatile-lru
+
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -16,22 +32,17 @@ import django.contrib.messages
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-# HTTPS settings
+# SSL Settings (always force https in production)
 # CSRF_COOKIE_SECURE = True
-#
 # SESSION_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = [
     '.herokuapp.com',
@@ -74,7 +85,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-# Application definition
+# Application definitions
 
 INSTALLED_APPS = (
     # Core apps
@@ -129,7 +140,6 @@ DATABASES = {
 }
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -143,7 +153,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
 
@@ -159,6 +168,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
+    # Extra Core: add the current HttpRequest to RequestContext
     "django.core.context_processors.request",
 )
 

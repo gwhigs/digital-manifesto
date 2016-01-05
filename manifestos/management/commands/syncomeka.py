@@ -108,7 +108,7 @@ def make_model_dict(omeka_obj, sync_dict):
 
 
 class Command(NoArgsCommand):
-    help = ("Syncs to the project's Omeka database.")
+    help = "Syncs to the project's Omeka database."
 
     def handle_noargs(self, **options):
         for (resource, model, sync_dict) in SYNC_MODELS:

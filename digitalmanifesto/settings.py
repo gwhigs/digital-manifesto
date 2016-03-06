@@ -194,11 +194,18 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'manifestos.custom_storages.StaticS3BotoStorage'
 # DEFAULT_FILE_STORAGE = 'manifestos.custom_storages.MediaS3BotoStorage'
 
+# === SECRETS ===
+
+# AWS
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+# Twitter
+TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_CONSUMER_KEY')
+TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET')
+TWITTER_ACCESS_KEY = os.environ.get('TWITTER_ACCESS_KEY')
+TWITTER_ACCESS_SECRET = os.environ.get('TWITTER_ACCESS_SECRET')
 
 # API settings
 

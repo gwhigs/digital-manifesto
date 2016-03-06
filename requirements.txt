@@ -21,3 +21,4 @@ requests==2.4.3
 six==1.8.0
 sorl-thumbnail==11.12.1b
 sqlparse==0.1.13
+tweepy==3.5.0

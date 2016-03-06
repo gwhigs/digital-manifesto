@@ -1,7 +1,7 @@
 from django.core.management import BaseCommand
 
 from manifestos.twitter import TwitterBot
-from manifestos import models
+from manifestos.models import Tweet
 
 
 class Command(BaseCommand):
@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         bot = TwitterBot()
-        queryset = models.Tweet.objects.filter(tweeted=False).order_by('modified')
+        queryset = Tweet.objects.filter(tweeted=False).order_by('modified')
         if not queryset.count():
             return
 
@@ -28,4 +28,4 @@ class Command(BaseCommand):
         tweet.tweeted = True
         tweet.save()
         if options['verbose']:
-            print('Tweet made:\n{}'.format(text))
+            print('Tweeted:\n{}'.format(text))

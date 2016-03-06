@@ -30,6 +30,6 @@ class CollectionAdmin(admin.ModelAdmin):
 @admin.register(Tweet)
 class TweetAdmin(admin.ModelAdmin):
     list_display = ('modified', 'tweeted', 'text')
-    fields = ('text',)
+    fields = ('text', 'tweeted')
     search_fields = ('text',)
     ordering = ('modified',)

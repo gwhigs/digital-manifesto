@@ -4,7 +4,8 @@ from django.contrib import admin
 
 from simple_history.admin import SimpleHistoryAdmin
 
-from .models import Manifesto, Collection
+from .models import Manifesto, Collection, Tweet
+
 
 @admin.register(Manifesto)
 class ManifestoAdmin(SimpleHistoryAdmin):
@@ -24,3 +25,10 @@ class CollectionAdmin(admin.ModelAdmin):
         'art_file',
         'featured',
     )
+
+
+@admin.register(Tweet)
+class TweetAdmin(admin.ModelAdmin):
+    list_display = ('modified', 'tweeted', 'text')
+    fields = ('text', 'tweeted')
+    search_fields = ('text',)

@@ -87,3 +87,6 @@ class Manifesto(TimeStampedModel):
 class Tweet(TimeStampedModel):
     text = models.CharField(max_length=140)
     tweeted = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('-modified',)

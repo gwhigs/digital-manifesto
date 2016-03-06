@@ -19,3 +19,5 @@ class Command(BaseCommand):
         tweet = queryset[0]
         text = tweet.text
         bot.tweet(text)
+        tweet.tweeted = True
+        tweet.save()

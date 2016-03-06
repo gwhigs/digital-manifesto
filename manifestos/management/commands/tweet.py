@@ -8,7 +8,13 @@ class Command(BaseCommand):
     help = ''
 
     def add_arguments(self, parser):
-        pass
+        parser.add_argument(
+            '--verbose',
+            action='store_true',
+            dest='verbose',
+            default=False,
+            help='Verbose output',
+        )
 
     def handle(self, *args, **options):
         bot = TwitterBot()
@@ -21,3 +27,5 @@ class Command(BaseCommand):
         bot.tweet(text)
         tweet.tweeted = True
         tweet.save()
+        if options['verbose']:
+            print('Tweet made:\n{}'.format(text))

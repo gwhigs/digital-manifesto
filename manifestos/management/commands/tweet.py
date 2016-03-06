@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         bot = TwitterBot()
-        queryset = models.Tweet.objects.filter(tweeted=False).order_by('-modified')
+        queryset = models.Tweet.objects.filter(tweeted=False).order_by('modified')
         if not queryset.count():
             return
 

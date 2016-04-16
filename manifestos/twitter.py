@@ -30,9 +30,10 @@ class TwitterBot(object):
             r'^(ON|OFF|FOLLOW|F|UNFOLLOW|LEAVE|L|STOP|QUIT|END|CANCEL|'
             r'UNSBSCRIBE|ARRET|D|M|RETWEET|RT|SET|WHOIS|W|GET|G|FAV|FAVE|'
             r'FAVORITE|FAVORITE|\*|STATS|SUGGEST|SUG|S|WTF|HELP|INFO|AIDE|'
-            r'BLOCK|BLK|REPORT|REP)\W', re.I)
+            r'BLOCK|BLK|REPORT|REP)(\W)(.*)', re.I)
+        text = re.sub(pattern, '\\1\u200B\\2\\3', text)
         if re.match(pattern, text):
-            text = '_' + text
+            text = re.sub()
 
         text = text[:140]
         api = self.get_api()

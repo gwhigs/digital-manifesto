@@ -1,7 +1,7 @@
-import tweepy
+import re
 
 from django.conf import settings
-
+import tweepy
 
 TWITTER_CONSUMER_KEY = settings.TWITTER_CONSUMER_KEY
 TWITTER_CONSUMER_SECRET = settings.TWITTER_CONSUMER_SECRET
@@ -25,6 +25,14 @@ class TwitterBot(object):
     def tweet(self, text):
         if not isinstance(text, str):
             raise NotImplemented('Can only tweet strings.')
+        # Escape SMS commands
+        pattern = re.compile(
+            r'^(ON|OFF|FOLLOW|F|UNFOLLOW|LEAVE|L|STOP|QUIT|END|CANCEL|'
+            r'UNSBSCRIBE|ARRET|D|M|RETWEET|RT|SET|WHOIS|W|GET|G|FAV|FAVE|'
+            r'FAVORITE|FAVORITE|\*|STATS|SUGGEST|SUG|S|WTF|HELP|INFO|AIDE|'
+            r'BLOCK|BLK|REPORT|REP)\W', re.I)
+        if re.match(pattern, text):
+            text = '_' + text
 
         text = text[:140]
         api = self.get_api()

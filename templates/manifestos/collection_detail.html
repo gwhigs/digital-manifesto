@@ -40,7 +40,7 @@
 <div class="container">
 <br />
 <h2>Items in Collection</h2>
-{% if collection.manifesto_set %}
+{% if collection.manifestos %}
 	<table class="table table-striped table-bordered table-hover" id="manifestoTable">
 		<thead>
 			<tr>
@@ -51,7 +51,7 @@
 			</tr>
 		</thead>
 		<tbody data-link="row" class="rowlink">
-		{% for manifesto in collection.manifesto_set.all %}
+		{% for manifesto in collection.manifestos.all %}
 		<tr>
 			<td class="art">
                 <a href="{{ manifesto.get_absolute_url }}">

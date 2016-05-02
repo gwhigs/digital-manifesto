@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^projects-we-like/$', views.ProjectsTemplateView.as_view(), name='projects'),
     url(r'^resources/$', views.ResourcesTemplateView.as_view(), name='resources'),
     url(r'^manifestos/', include('manifestos.urls', namespace='manifestos')),
+    url(r'^annotations/', include('annotations.urls', namespace='annotations')),
 ]

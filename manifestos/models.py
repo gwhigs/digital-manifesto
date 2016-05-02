@@ -39,7 +39,7 @@ class Collection(TimeStampedModel):
         return reverse('manifestos:collection_detail', args=[str(self.id)])
 
     def get_most_recent_manifesto(self):
-        return self.manifesto_set.first()
+        return self.manifestos.first()
 
     @python_2_unicode_compatible
     def __str__(self):
@@ -68,13 +68,15 @@ class Manifesto(TimeStampedModel):
     added = models.DateTimeField(null=True, blank=True)
     subject = models.CharField(max_length=255, blank=True)
     text = models.TextField(blank=True)  # needs html tag functionality
-    collection = models.ForeignKey(Collection, null=True, blank=True)
+    collection = models.ForeignKey(
+        Collection, null=True, blank=True, related_name='manifestos'
+    )
     tags = TaggableManager(blank=True)
     featured = FeaturedField()
     history = HistoricalRecords()
 
     def get_absolute_url(self):
-        return reverse('manifestos:detail', args=[str(self.id)])
+        return reverse('manifestos:detail', args=[str(self.pk)])
 
     @python_2_unicode_compatible
     def __str__(self):

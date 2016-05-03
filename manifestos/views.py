@@ -1,8 +1,7 @@
 from django.views import generic
-from braces.views import SelectRelatedMixin, PrefetchRelatedMixin
+from braces.views import PrefetchRelatedMixin
 
 from annotations.forms import AnnotationForm
-from annotations.views import AnnotationFormView
 from . import models
 
 
@@ -10,12 +9,6 @@ class ManifestoListView(PrefetchRelatedMixin, generic.ListView):
     model = models.Manifesto
     prefetch_related = ['tags']
     queryset = models.Manifesto.objects.defer('text')
-    #     'text',
-    #     'art_file',
-    #     'tags',
-    #     'description',
-    #
-    # )
 
 
 class ManifestoDetailView(generic.DetailView):

@@ -1,5 +1,4 @@
 from django.views.generic import CreateView
-from django.views.generic.detail import SingleObjectMixin
 
 from braces.views import LoginRequiredMixin
 
@@ -8,14 +7,14 @@ from manifestos.mixins import SuccessMessageMixin
 
 
 class AnnotationCreateView(LoginRequiredMixin, SuccessMessageMixin,
-                           SingleObjectMixin, CreateView):
+                           CreateView):
     template_name = 'manifestos/manifesto_detail.html'
-    form_class = forms.AnnotationForm()
+    form_class = forms.AnnotationForm
     model = models.Annotation
     success_msg = 'Annotation saved.'
 
     def get_success_url(self):
-        return self.object.manifesto.get_absolute_url()
+        return self.object.text_object.get_absolute_url()
 
     def form_valid(self, form):
         form.instance.user = self.request.user

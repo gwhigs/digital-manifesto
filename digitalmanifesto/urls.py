@@ -9,7 +9,6 @@ from . import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^autocomplete/', include('autocomplete_light.urls')),
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^about/$', views.AboutTemplateView.as_view(), name='about'),
     url(r'^contact/$', views.ContactTemplateView.as_view(), name='contact'),

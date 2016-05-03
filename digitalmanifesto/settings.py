@@ -96,10 +96,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Project apps
     'manifestos',
+    'annotations',
     # 3rd party packages
     'grappelli',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
-    'autocomplete_light',
     'taggit',
     'crispy_forms',
     'floppyforms',
@@ -160,21 +162,27 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.core.context_processors.static",
-    "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages",
-    # Extra Core: add the current HttpRequest to RequestContext
-    "django.core.context_processors.request",
-)
-
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Django defaults
+                "django.contrib.auth.context_processors.auth",
+                "django.core.context_processors.debug",
+                "django.core.context_processors.i18n",
+                "django.core.context_processors.media",
+                "django.core.context_processors.static",
+                "django.core.context_processors.tz",
+                "django.contrib.messages.context_processors.messages",
+                # Extra Core: add the current HttpRequest to RequestContext
+                "django.template.context_processors.request",
+            ]
+        }
+    }
+]
 
 # Custom settings below
 

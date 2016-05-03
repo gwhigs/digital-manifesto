@@ -15,14 +15,14 @@ class AnnotationForm(ModelForm):
         model = models.Annotation
         fields = [
             'text',
-            'manifesto',
+            'text_object',
             'text_start_index',
             'text_end_index',
             'user',
         ]
         # `text` is the only field we actually want rendered to the user
         widgets = {
-            'manifesto': forms.HiddenInput(),
+            'text_object': forms.HiddenInput(),
             # 'text_start_index': forms.HiddenInput(),
             # 'text_end_index': forms.HiddenInput(),
             'user': forms.HiddenInput(),

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block header %}{{ manifesto.name|safe }}{% endblock %}
 
@@ -6,11 +7,26 @@
 {% block content %}
 <div class="container">
     {% if manifesto.art_file %}
-        <p><a href="{{ manifesto.art_file.url }}"><img src="{{ manifesto.art_file.url }}" class="img-rounded"></a></p>
+        <p><a href="{{ manifesto.art_file.url }}"><img class="img-rounded img-responsive" src="{{ manifesto.art_file.url }}" class="img-rounded"></a></p>
     {% endif %}
     {% if manifesto.text %}
-        <h3>Text</h3>
-        <pre>{{ manifesto.text|safe }}</pre>
+        <div class="row">
+            <div class="col-xs-8">
+                <h3>Text</h3>
+                <div class="well">{{ manifesto.text|safe|linebreaks }}</div>
+            </div>
+            <div class="col-xs-4">
+            {% comment %}
+                <h3>Annotate!</h3>
+                {% if user.is_authenticated %}
+                    {% crispy form %}
+                {% else %}
+                    <p>Coming soon...</p>
+                    <p><a href="{% url 'login' %}">Log In</a> or <a href="{% url 'signup' %}">Sign Up</a> to start annotating.</p>
+                {% endif %}
+            {% endcomment %}
+            </div>
+        </div>
     {% endif %}
     <h3>Subject</h3>
     <p>{{ manifesto.subject|safe }}</p>

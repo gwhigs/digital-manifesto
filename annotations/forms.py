@@ -7,7 +7,7 @@ from . import models
 
 class AnnotationForm(ModelForm):
     def __init__(self, *args, **kwargs):
-        super(self, AnnotationForm).__init__(*args, **kwargs)
+        super(AnnotationForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_action = 'annotations:create'
 

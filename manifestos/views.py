@@ -15,7 +15,7 @@ class ManifestoDetailView(generic.DetailView):
     model = models.Manifesto
 
     def get_context_data(self, **kwargs):
-        context = super(self, ManifestoDetailView).get_context_data(**kwargs)
+        context = super(ManifestoDetailView, self).get_context_data(**kwargs)
         # Add an Annotation creation form to our template context
         initial = {
             'user': self.request.user,

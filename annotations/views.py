@@ -18,4 +18,4 @@ class AnnotationCreateView(LoginRequiredMixin, SuccessMessageMixin,
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super(self, AnnotationCreateView).form_valid(form)
+        return super(AnnotationCreateView, self).form_valid(form)

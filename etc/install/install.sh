@@ -28,8 +28,8 @@ export LC_ALL=en_US.UTF-8
 apt-get update -y
 # Python dev packages
 apt-get install -y build-essential python python-dev python-setuptools python3 python3-dev python3-setuptools
-# python-setuptools being installed manually
-# wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python
+# GraphViz for graphing models, plus pkg-config so pygraphviz will install
+apt-get install -y graphviz libgraphviz-dev pkg-config
 # Dependencies for image processing with Pillow (drop-in replacement for PIL)
 # supporting: jpeg, tiff, png, freetype, littlecms
 # (pip install pillow to get pillow itself, it is not in requirements.txt)

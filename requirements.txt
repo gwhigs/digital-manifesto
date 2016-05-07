@@ -1,6 +1,7 @@
 Django==1.9.6
 Pillow==2.6.1
 boto==2.39.0
+django-analytical==2.0.0
 django-autocomplete-light==3.1.5
 django-braces==1.8.1
 django-crispy-forms==1.6.0

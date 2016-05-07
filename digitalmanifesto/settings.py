@@ -108,6 +108,7 @@ INSTALLED_APPS = (
     'simple_history',
     'storages',
     'sorl.thumbnail',
+    'analytical',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -214,6 +215,10 @@ TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_CONSUMER_KEY')
 TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET')
 TWITTER_ACCESS_KEY = os.environ.get('TWITTER_ACCESS_KEY')
 TWITTER_ACCESS_SECRET = os.environ.get('TWITTER_ACCESS_SECRET')
+
+
+# Enable django-analytical services
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
 
 # API settings
 

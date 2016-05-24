@@ -94,14 +94,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
     # Project apps
     'manifestos',
     'annotations',
     # 3rd party packages
-    'grappelli',
     'dal',
     'dal_select2',
-    'django.contrib.admin',
     'taggit',
     'crispy_forms',
     'floppyforms',

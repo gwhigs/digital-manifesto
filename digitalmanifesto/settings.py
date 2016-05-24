@@ -202,6 +202,8 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'manifestos.custom_storages.StaticS3BotoStorage'
 # DEFAULT_FILE_STORAGE = 'manifestos.custom_storages.MediaS3BotoStorage'
 
+AWS_QUERYSTRING_AUTH = False
+
 # === SECRETS ===
 
 # AWS

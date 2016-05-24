@@ -10,6 +10,7 @@ django-extensions==1.6.1
 django-featured-item==0.4.1
 django-floppyforms==1.6.1
 django-grappelli==2.8.1
+django-jet==0.1.4
 django-model-utils==2.4
 django-simple-history==1.8.1
 django-taggit==0.18.1

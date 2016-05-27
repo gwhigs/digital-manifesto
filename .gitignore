@@ -58,6 +58,9 @@ target/
 thumbnail_kvstore
 thumbnail_kvstore.lock
 
+# Vagrant
+.vagrant/
+
 # And some custom stuff
 local_settings.py
 cache/

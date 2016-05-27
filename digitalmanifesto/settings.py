@@ -197,9 +197,6 @@ MESSAGE_TAGS = {
     django.contrib.messages.constants.ERROR: 'danger'
 }
 
-# Grappelli customization
-GRAPPELLI_ADMIN_TITLE = 'Digital Manifesto Archive'
-
 # Crispy-forms customization
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -229,7 +226,7 @@ GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
 
 # django-cors-headers
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_EXPOSE_HEADERS = ('Access-Allow-Control-Origin: *',)
+CORS_EXPOSE_HEADERS = ('Access-Control-Allow-Origin: *',)
 
 # API settings
 

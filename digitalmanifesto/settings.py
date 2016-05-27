@@ -229,6 +229,7 @@ GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
 
 # django-cors-headers
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_EXPOSE_HEADERS = ('Access-Allow-Control-Origin: *',)
 
 # API settings
 

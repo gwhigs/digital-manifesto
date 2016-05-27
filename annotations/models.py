@@ -1,37 +1,32 @@
-from django.core.exceptions import ValidationError
-from django.core.urlresolvers import reverse
+from django.conf import settings
 from django.db import models
 from django.template.defaultfilters import truncatechars
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
 
 from model_utils.models import TimeStampedModel
-from simple_history.models import HistoricalRecords
-
-from manifestos.models import Manifesto
+from taggit.managers import TaggableManager
 
 
 class Annotation(TimeStampedModel):
     user = models.ForeignKey(User)
-    text_object = models.ForeignKey(Manifesto)
-    text_start_index = models.PositiveIntegerField()
-    text_end_index = models.PositiveIntegerField()
+    text_object = models.ForeignKey(settings.ANNOTATION_TEXT_OBJECT)
+
+    # Key fields from the Annotator JSON Format: http://docs.annotatorjs.org/en/v1.2.x/annotation-format.html
+    annotator_schema_version = models.CharField(max_length=8, blank=True)
     text = models.TextField(blank=True)
-    history = HistoricalRecords()
+    quote = models.TextField()
+    uri = models.URLField(blank=True)
+    range_start = models.CharField(max_length=50, blank=True)
+    range_end = models.CharField(max_length=50, blank=True)
+    range_start_offset = models.BigIntegerField()
+    range_end_offset = models.BigIntegerField()
+
+    # Third party fields
+    tags = TaggableManager(blank=True)
 
     def get_source_text(self):
         return getattr(self.text_object, 'text', '')
-
-    def clean(self):
-        if self.text_end_index < self.text_start_index:
-            raise ValidationError(
-                "Text indices don't make sense. Check you selection tool."
-            )
-        if self.text_end_index < len(self.get_source_text()):
-            raise ValidationError('Index outside text range.')
-
-    def get_absolute_url(self):
-        return reverse('manifestos:detail', args=[str(self.text_object.pk)])
 
     @python_2_unicode_compatible
     def __str__(self):

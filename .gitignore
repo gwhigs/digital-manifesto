@@ -54,10 +54,12 @@ docs/_build/
 # PyBuilder
 target/
 
+# Sorl-Thumbnail
+thumbnail_kvstore
+thumbnail_kvstore.lock
 
 # And some custom stuff
 local_settings.py
-makeshows.csv
 cache/
 # Pycharm
 .idea/

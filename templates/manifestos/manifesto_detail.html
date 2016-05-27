@@ -13,20 +13,18 @@
         <div class="row" id="doc_div">
             <div class="col-xs-8">
                 <h3>Text</h3>
-                <div class="well" id="text_div">{{ manifesto.text|safe|linebreaksbr }}</div>
+                <div class="well" id="text_div">{{ manifesto.text|safe|linebreaks }}</div>
 {#                <pre id="text_div" style="white-space: normal">{{ manifesto.text|safe }}</pre>#}
             </div>
+            {% if user.is_authenticated %}
             <div class="col-xs-4" id="annotation_div">
                 <h3>Annotate!</h3>
-                {% if user.is_authenticated %}
-                    {% crispy form %}
-                {% else %}
-                    <p>Coming soon...</p>
+                    <p>Select some text to get started.</p>
                     {% comment %}
                     <p><a href="{% url 'login' %}">Log In</a> or <a href="{% url 'signup' %}">Sign Up</a> to start annotating.</p>
                     {% endcomment %}
-                {% endif %}
             </div>
+            {% endif %}
         </div>
     {% endif %}
     <h3 id="subj_div">Subject</h3>
@@ -49,18 +47,52 @@
 {% endblock content %}
 
 {% block javascript %}
-<script>
-    "use strict";
-    var start_index = $('#id_text_start_index');
-    var end_index = $('#id_text_end_index');
-    var text_div = $('#text_div');
-    var annotate_div = $('#annotation_div');
-    var doc_div = $('#doc_div');
-    var subj_div = $('#subj_div');
+    {% if user.is_authenticated %}
 
+    {% include 'annotations/annotation_static.html' %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.min.js"></script>
 
-$(function () {
+    <script>
+        "use strict";
+        var csrftoken = Cookies.get('csrftoken');
 
-});
-</script>
+        /* ===Annotations=== */
+
+        var app = new annotator.App();
+        app.include(annotator.ui.main, {element: document.querySelector('#text_div')});
+        app.include(annotator.storage.http, {
+            prefix: '{{ storage_api_base_url }}',
+            urls: {
+                // These are the default URLs.
+                create:  '/annotations/',
+                update:  '/annotations/{id}/',
+                destroy: '/annotations/{id}/',
+                search:  '/annotations/'
+            },
+            headers: {"X-CSRFToken": csrftoken}
+        });
+
+        // Include text_object and user ID values in creation requests
+        var extra_data = function () {
+            return {
+                beforeAnnotationCreated: function (ann) {
+                    ann.uri = window.location.href;
+                    ann.text_object = '{{ manifesto.pk }}';
+                    ann.user = '{{ user.pk }}';
+                }
+            };
+        };
+        app.include(extra_data);
+
+        // Start our Annotation app
+        app.start()
+            // Include the current object's
+            .then(function () {
+                app.annotations.load({
+                    text_object_id: {{ manifesto.pk }}
+                });
+            });
+
+    </script>
+    {% endif %}
 {% endblock javascript %}

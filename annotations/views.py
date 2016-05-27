@@ -1,21 +1,34 @@
-from django.views.generic import CreateView
+from __future__ import absolute_import, unicode_literals
+from rest_framework import permissions, viewsets, views, parsers, renderers, filters
 
-from braces.views import LoginRequiredMixin
-
-from . import forms, models
-from manifestos.mixins import SuccessMessageMixin
+from . import models, serializers
 
 
-class AnnotationCreateView(LoginRequiredMixin, SuccessMessageMixin,
-                           CreateView):
-    template_name = 'manifestos/manifesto_detail.html'
-    form_class = forms.AnnotationForm
-    model = models.Annotation
-    success_msg = 'Annotation saved.'
+class AnnotationRenderer(renderers.JSONRenderer):
+    """
+    Format our JSON response so Annotator JS will recognize it.
+    """
+    def render(self, data, accepted_media_type=None, renderer_context=None):
+        if isinstance(data, (list, tuple)):
+            data = {'rows': data}
+        return super(AnnotationRenderer, self).render(data, accepted_media_type=accepted_media_type, renderer_context=renderer_context)
 
-    def get_success_url(self):
-        return self.object.text_object.get_absolute_url()
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(AnnotationCreateView, self).form_valid(form)
+class AnnotationViewSet(viewsets.ModelViewSet):
+    """
+    View to handle all Annotator JS requests
+    """
+    queryset = models.Annotation.objects.defer('text_object__text').select_related('text_object')
+    serializer_class = serializers.AnnotationSerializer
+    permission_classes = (permissions.AllowAny,)
+    parser_classes = (parsers.JSONParser,)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('text_object_id', 'uri')
+    renderer_classes = (AnnotationRenderer, renderers.BrowsableAPIRenderer)
+
+
+class AnnotationIndexAPI(views.APIView):
+    """
+    Placeholder view for use in `urlpatterns` so we can `reverse()` our API endpoint
+    """
+    pass

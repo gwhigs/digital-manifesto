@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.views import generic
 from braces.views import PrefetchRelatedMixin
 
@@ -22,6 +23,7 @@ class ManifestoDetailView(generic.DetailView):
             'manifesto': self.object,
         }
         context['form'] = AnnotationForm(initial=initial)
+        context['storage_api_base_url'] = reverse('annotations:api:index')[:-1]
         return context
 
 

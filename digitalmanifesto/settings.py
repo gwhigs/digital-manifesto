@@ -110,6 +110,7 @@ INSTALLED_APPS = (
     'storages',
     'sorl.thumbnail',
     'analytical',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -226,8 +227,10 @@ GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
 # API settings
 
 OMEKA_ENDPOINT = 'http://digitalmanifesto.omeka.net/api'
-
 OMEKA_API_KEY = os.environ.get('OMEKA_API_KEY')
+
+# Custom app settings
+ANNOTATION_TEXT_OBJECT = 'manifestos.Manifesto'
 
 # Include local settings, if they exists
 try:

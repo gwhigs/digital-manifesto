@@ -14,10 +14,6 @@ class AnnotationForm(ModelForm):
         self.helper.form_action = 'annotations:create'
         self.helper.layout = Layout(
             'text',
-            'text_object',
-            'text_start_index',
-            'text_end_index',
-            'user',
             FormActions(
                 Submit('save', 'Annotate'),
                 Reset('reset', 'Nevermind'),
@@ -27,16 +23,9 @@ class AnnotationForm(ModelForm):
     class Meta:
         model = models.Annotation
         fields = [
-            'text',
             'text_object',
-            'text_start_index',
-            'text_end_index',
-            'user',
         ]
         # `text` is the only field we actually want rendered to the user
         widgets = {
             'text_object': forms.HiddenInput(),
-            # 'text_start_index': forms.HiddenInput(),
-            # 'text_end_index': forms.HiddenInput(),
-            'user': forms.HiddenInput(),
         }

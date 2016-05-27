@@ -1,10 +1,10 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 
-from . import views
+from . import views, api_urls
 
 urlpatterns = [
     # url(r'^$',  ManifestoListView.as_view(), name='index'),
-    url(r'^create/$', views.AnnotationCreateView.as_view(), name='create'),
+    url(r'^api/', include(api_urls, namespace='api'))
 ]

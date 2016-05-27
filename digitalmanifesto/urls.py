@@ -7,7 +7,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    # url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^$', views.IndexView.as_view(), name='index'),

@@ -95,7 +95,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Admin
-    'jet',
+    # 'jet',
     'django.contrib.admin',
     # Project apps
     'manifestos',

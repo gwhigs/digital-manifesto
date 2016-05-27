@@ -225,10 +225,7 @@ TWITTER_ACCESS_SECRET = os.environ.get('TWITTER_ACCESS_SECRET')
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
 
 # django-cors-headers
-CORS_ORIGIN_WHITELIST = (
-    'digitalmanifesto.s3.amazonaws.com',
-    'google.com'
-)
+CORS_ORIGIN_ALLOW_ALL = True
 
 # API settings
 

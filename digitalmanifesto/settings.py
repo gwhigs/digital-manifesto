@@ -116,8 +116,9 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # corsheaders plugin should be listed befor django's common
+    # corsheaders plugin should be listed befor django's CommonMiddleware
     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -226,6 +227,7 @@ GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
 
 # django-cors-headers
 CORS_ORIGIN_ALLOW_ALL = True
+
 
 # API settings
 

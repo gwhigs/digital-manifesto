@@ -1,8 +1,16 @@
 from __future__ import absolute_import, unicode_literals
 
+from django.http import HttpResponse
 from django.views.generic import TemplateView
 
 from manifestos.models import Manifesto, Collection
+
+
+LETSENCRYPT_SECRET = '4Ahphns6Tj7c6OGY9naTVY4CiN4YkTimMH4BpTUSrgU.RoqK1ZHN6384upsmMKbrJuxqaGNKcmJc5JApOy8qi8Y'
+
+
+def acme_challenge(request):
+    return HttpResponse(LETSENCRYPT_SECRET)
 
 
 class IndexView(TemplateView):

@@ -19,5 +19,5 @@ urlpatterns = [
     url(r'^manifestos/', include('manifestos.urls', namespace='manifestos')),
     url(r'^annotations/', include('annotations.urls', namespace='annotations')),
     # Let's Encrypt challenge
-    url(r'^.well-known/acme-challenge/4Ahphns6Tj7c6OGY9naTVY4CiN4YkTimMH4BpTUSrgU/')
+    url(r'^.well-known/acme-challenge/4Ahphns6Tj7c6OGY9naTVY4CiN4YkTimMH4BpTUSrgU/', views.acme_challenge)
 ]

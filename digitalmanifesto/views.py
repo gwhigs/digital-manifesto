@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from manifestos.models import Manifesto, Collection
 
 
-LETSENCRYPT_SECRET = '4Ahphns6Tj7c6OGY9naTVY4CiN4YkTimMH4BpTUSrgU.RoqK1ZHN6384upsmMKbrJuxqaGNKcmJc5JApOy8qi8Y'
+LETSENCRYPT_SECRET = 'M09NCZcjjH9SsvYrxz08CWLxKbUonF6-GK0z-J49yGk.RoqK1ZHN6384upsmMKbrJuxqaGNKcmJc5JApOy8qi8Y'
 
 
 def acme_challenge(request):

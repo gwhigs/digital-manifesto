@@ -6,11 +6,12 @@ from django.views.generic import TemplateView
 from manifestos.models import Manifesto, Collection
 
 
-LETSENCRYPT_SECRET = 'ZgmyqfB2TZhlMSqwc2-4gJdLgpJzh_qTZxapNDNI2fk.RoqK1ZHN6384upsmMKbrJuxqaGNKcmJc5JApOy8qi8Y'
+LETSENCRYPT_SECRET = 'RoqK1ZHN6384upsmMKbrJuxqaGNKcmJc5JApOy8qi8Y'
 
 
-def acme_challenge(request):
-    return HttpResponse(LETSENCRYPT_SECRET)
+def acme_challenge(request, key):
+    resp = '.'.join(key, LETSENCRYPT_SECRET)
+    return HttpResponse(resp)
 
 
 class IndexView(TemplateView):

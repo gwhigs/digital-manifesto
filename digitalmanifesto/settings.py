@@ -40,9 +40,12 @@ DEBUG = False
 TEMPLATE_DEBUG = False
 
 # SSL Settings (always force https in production)
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+
+# Heroku setting for SSL redirection (avoids redirect loop)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = [
     '.herokuapp.com',

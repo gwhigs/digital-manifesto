@@ -53,6 +53,9 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
+SITE_ID = 1
+
 ADMINS = [
     ('Graham Higgins', 'gwhigs@gmail.com'),
 ]
@@ -97,6 +100,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Enable Django's Sites framework
+    'django.contrib.sites',
     # Admin
     # 'jet',
     'django.contrib.admin',
@@ -115,6 +120,9 @@ INSTALLED_APPS = (
     'analytical',
     'rest_framework',
     'corsheaders',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -130,6 +138,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Simple History pkg functionality
     'simple_history.middleware.HistoryRequestMiddleware',
+)
+
+# Authentication backend for django-allauth
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 ROOT_URLCONF = 'digitalmanifesto.urls'

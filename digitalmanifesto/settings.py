@@ -143,6 +143,10 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+# Django allauth
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
 ROOT_URLCONF = 'digitalmanifesto.urls'
 
 WSGI_APPLICATION = 'digitalmanifesto.wsgi.application'

@@ -103,7 +103,7 @@ INSTALLED_APPS = (
     # Enable Django's Sites framework
     'django.contrib.sites',
     # Admin
-    # 'jet',
+    'jet',
     'django.contrib.admin',
     # Project apps
     'manifestos',

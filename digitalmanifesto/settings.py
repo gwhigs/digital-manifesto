@@ -150,6 +150,7 @@ AUTHENTICATION_BACKENDS = (
 # Django allauth
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_ADAPTER = 'digitalmanifesto.adapters.NoNewUsersAccountAdapter'
 
 ROOT_URLCONF = 'digitalmanifesto.urls'
 

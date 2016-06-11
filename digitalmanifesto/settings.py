@@ -119,7 +119,6 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'analytical',
     'rest_framework',
-    'corsheaders',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -128,9 +127,6 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # corsheaders plugin should be listed befor django's CommonMiddleware
-    'corsheaders.middleware.CorsMiddleware',
-    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -242,12 +238,6 @@ TWITTER_ACCESS_SECRET = os.environ.get('TWITTER_ACCESS_SECRET')
 
 # Enable django-analytical services
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
-
-# django-cors-headers
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_EXPOSE_HEADERS = (
-    'Access-Control-Allow-Origin: *',
-)
 
 
 # API settings

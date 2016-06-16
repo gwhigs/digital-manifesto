@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^annotations/', include('annotations.urls', namespace='annotations')),
 
     # Let's Encrypt challenge
-    url(r'^.well-known/acme-challenge/(?P<key>.*)/', views.acme_challenge),
+    url(r'^\.well-known/acme-challenge/(?P<key>.*)/', views.acme_challenge),
 
     # allauth
     url(r'^accounts/', include('allauth.urls')),

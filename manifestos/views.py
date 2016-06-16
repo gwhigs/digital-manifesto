@@ -1,5 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.views import generic
+from django.db.models import Prefetch
+
 from braces.views import PrefetchRelatedMixin
 
 from annotations.forms import AnnotationForm
@@ -27,9 +29,11 @@ class ManifestoDetailView(generic.DetailView):
         return context
 
 
-class CollectionListView(PrefetchRelatedMixin, generic.ListView):
+class CollectionListView(generic.ListView):
     model = models.Collection
-    prefetch_related = ['manifestos']
+    prefetch_qs = models.Manifesto.objects.defer('text')
+    prefetch = Prefetch('manifestos', queryset=prefetch_qs)
+    queryset = models.Collection.objects.prefetch_related(prefetch)
 
 
 class CollectionDetailView(PrefetchRelatedMixin, generic.DetailView):

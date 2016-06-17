@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}About Our Twitter Bot{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <p>The <a href="https://twitter.com/DHManifesto_Bot">DHManifesto_Bot</a> interjects political thought prefigurative of, developed for, and associated with the digital humanities in the Twittersphere. It reproduces content archived at <a href="http://www.digitalmanifesto.net">https://www.digitalmanifesto.net</a> in its feed as it was authored (with the inclusion of custom hashtags), attributing the work to those who authored it.</p>
+    <p>The bot represents two parallel concerns where digital humanities method and politics coincide:</p>
+    <ol>
+        <li>The bot is an agonistic expression of the digital humanities histories, methodologies, and political force. It is a means of articulating ideas that might be at odds with each other, endemic to the discipline, without imposing any need to resolve its contradictions.</li>
+        <li>The bot extends the discursive hospitality endemic to the manifesto genre, broadening the horizon of the "we" that is invoked by the authors of each manifesto that is reproduced.</li>
+    </ol>
+    <p>It should be noted that the formation of a "we" performed by a given manifesto is not indiscriminately given. It is a form of hospitality formed at a partisan divide, perhaps contradictorily so, but one that the genre consistently offers and provokes.</p>
+</div>
+<div class="container" id="twitter_feed">
+    <h2>Our bot in action:</h2>
+    <br/>
+    <a class="twitter-timeline" data-width="480" data-dnt="true" href="https://twitter.com/DHManifesto_Bot">Tweets by DHManifesto_Bot</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock %}

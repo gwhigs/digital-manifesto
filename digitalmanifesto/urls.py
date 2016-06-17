@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^news/$', TemplateView.as_view(template_name='news.html'), name='news'),
     url(r'^projects-we-like/$', TemplateView.as_view(template_name='projects_we_like.html'), name='projects'),
     url(r'^resources/$', TemplateView.as_view(template_name='resources.html'), name='resources'),
+    url(r'^twitterbot/$', TemplateView.as_view(template_name='twitterbot.html'), name='twitterbot'),
     url(r'^manifestos/', include('manifestos.urls', namespace='manifestos')),
     url(r'^annotations/', include('annotations.urls', namespace='annotations')),
 

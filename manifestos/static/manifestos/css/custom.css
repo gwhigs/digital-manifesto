@@ -2,7 +2,7 @@
     end of the Open Sans font for a fancier (less weighted) look.
 -------------------------------------------------- */
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:200,300');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 html {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;

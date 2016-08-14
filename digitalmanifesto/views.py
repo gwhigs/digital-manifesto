@@ -10,7 +10,7 @@ LETSENCRYPT_SECRET = 'RoqK1ZHN6384upsmMKbrJuxqaGNKcmJc5JApOy8qi8Y'
 
 
 def acme_challenge(request, key):
-    resp = '.'.join(key, LETSENCRYPT_SECRET)
+    resp = '.'.join((key, LETSENCRYPT_SECRET))
     return HttpResponse(resp)
 
 

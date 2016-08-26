@@ -1,5 +1,5 @@
 """
-All urls for our API.
+All urls for the Annotations API go here.
 """
 
 from __future__ import absolute_import, unicode_literals

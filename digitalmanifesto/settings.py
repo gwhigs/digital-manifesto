@@ -24,19 +24,19 @@ are required in production:
 
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-
 import os
 
 import django.contrib.messages
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+
+# === SECURITY ===
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
 DEBUG = False
-
 TEMPLATE_DEBUG = False
 
 # SSL Settings (always force https in production)
@@ -53,19 +53,28 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+
+# === CORE DJANGO ===
+
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
-
 ADMINS = [
     ('Graham Higgins', 'gwhigs@gmail.com'),
 ]
+ROOT_URLCONF = 'digitalmanifesto.urls'
+WSGI_APPLICATION = 'digitalmanifesto.wsgi.application'
 
-# CREDIT TO https://github.com/jordn/heroku-django-s3/
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
+
+# Email
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME')
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# Logging
+# Currently just sends an email to admins on every HTTP 500 error.
+# See http://docs.djangoproject.com/en/1.9/topics/logging
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -84,15 +93,7 @@ LOGGING = {
     }
 }
 
-# Sendgrid settings
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME')
-EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
 # Application definitions
-
 INSTALLED_APPS = (
     # Core apps
     'django.contrib.auth',
@@ -128,6 +129,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.twitter',
 )
 
+# Middleware
 MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -141,25 +143,14 @@ MIDDLEWARE_CLASSES = (
     'simple_history.middleware.HistoryRequestMiddleware',
 )
 
-# Authentication backend for django-allauth
+# Authentication backends
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',  # django-allauth
 )
 
-# Django allauth
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
-ACCOUNT_ADAPTER = 'digitalmanifesto.adapters.NoNewUsersAccountAdapter'
-
-ROOT_URLCONF = 'digitalmanifesto.urls'
-
-WSGI_APPLICATION = 'digitalmanifesto.wsgi.application'
-
-
 # Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -172,26 +163,21 @@ DATABASES = {
 }
 
 # Internationalization
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
-
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'manifestos.custom_storages.StaticS3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'manifestos.custom_storages.MediaS3BotoStorage'
 
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -214,22 +200,28 @@ TEMPLATES = [
     }
 ]
 
-# Custom settings below
-
 # One update needed for django.contrib.messages to play well with Bootstrap 3
 MESSAGE_TAGS = {
     django.contrib.messages.constants.ERROR: 'danger'
 }
 
-# Crispy-forms customization
+
+# === THIRD PARTY APP SETTINGS ===
+
+# Django allauth
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_ADAPTER = 'digitalmanifesto.adapters.NoNewUsersAccountAdapter'
+
+# Crispy-forms
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Storages (s3 functionality)
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATICFILES_STORAGE = 'manifestos.custom_storages.StaticS3BotoStorage'
-# DEFAULT_FILE_STORAGE = 'manifestos.custom_storages.MediaS3BotoStorage'
-
 AWS_QUERYSTRING_AUTH = False
+
+# django-analytical services
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
+
 
 # === SECRETS ===
 
@@ -244,17 +236,14 @@ TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET')
 TWITTER_ACCESS_KEY = os.environ.get('TWITTER_ACCESS_KEY')
 TWITTER_ACCESS_SECRET = os.environ.get('TWITTER_ACCESS_SECRET')
 
-
-# Enable django-analytical services
-GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-51926542-1'
-
-
-# API settings
-
+# Omeka API
 OMEKA_ENDPOINT = 'http://digitalmanifesto.omeka.net/api'
 OMEKA_API_KEY = os.environ.get('OMEKA_API_KEY')
 
-# Custom app settings
+
+# === PROJECT-SPECIFIC ===
+
+# Annotations
 ANNOTATION_TEXT_OBJECT = 'manifestos.Manifesto'
 
 # Include local settings, if they exists

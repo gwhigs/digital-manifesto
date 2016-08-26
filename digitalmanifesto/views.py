@@ -6,6 +6,8 @@ from django.views.generic import TemplateView
 from manifestos.models import Collection
 
 
+# Hacky stuff for Let's Encrypt ACME challenge, since we're doing this
+# --manual style for now
 LETSENCRYPT_SECRET = 'RoqK1ZHN6384upsmMKbrJuxqaGNKcmJc5JApOy8qi8Y'
 
 

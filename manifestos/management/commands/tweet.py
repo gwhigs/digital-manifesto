@@ -5,6 +5,9 @@ from manifestos.models import Tweet
 
 
 class Command(BaseCommand):
+    """
+    Tweets the least most recently modified Tweet object that hasn't already been tweeted.
+    """
     help = ''
 
     def add_arguments(self, parser):

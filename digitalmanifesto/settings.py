@@ -240,6 +240,9 @@ TWITTER_ACCESS_SECRET = os.environ.get('TWITTER_ACCESS_SECRET')
 OMEKA_ENDPOINT = 'http://digitalmanifesto.omeka.net/api'
 OMEKA_API_KEY = os.environ.get('OMEKA_API_KEY')
 
+# Letsencrypt secret for manual mode URL based acme challenge
+LETSENCRYPT_SECRET = os.environ.get('LETSENCRYPT_SECRET')
+
 
 # === PROJECT-SPECIFIC ===
 

@@ -2,13 +2,12 @@ from __future__ import absolute_import, unicode_literals
 
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from django.conf import settings
 
 from manifestos.models import Collection
 
 
-# Hacky stuff for Let's Encrypt ACME challenge, since we're doing this
-# --manual style for now
-LETSENCRYPT_SECRET = 'RoqK1ZHN6384upsmMKbrJuxqaGNKcmJc5JApOy8qi8Y'
+LETSENCRYPT_SECRET = settings.LETSENCRYPT_SECRET or ''
 
 
 def acme_challenge(request, key):

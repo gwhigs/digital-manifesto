@@ -8,6 +8,7 @@ from model_utils.models import TimeStampedModel
 from taggit.managers import TaggableManager
 
 
+@python_2_unicode_compatible
 class Annotation(TimeStampedModel):
     user = models.ForeignKey(User)
     text_object = models.ForeignKey(settings.ANNOTATION_TEXT_OBJECT)
@@ -28,7 +29,6 @@ class Annotation(TimeStampedModel):
     def get_source_text(self):
         return getattr(self.text_object, 'text', '')
 
-    @python_2_unicode_compatible
     def __str__(self):
         u = truncatechars(self.user.username, 15)
         t = truncatechars(self.text, 30)

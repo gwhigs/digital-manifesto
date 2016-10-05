@@ -10,6 +10,7 @@ import sorl.thumbnail
 from featureditem.fields import FeaturedField
 
 
+@python_2_unicode_compatible
 class Collection(TimeStampedModel):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
@@ -41,11 +42,11 @@ class Collection(TimeStampedModel):
     def get_most_recent_manifesto(self):
         return self.manifestos.first()
 
-    @python_2_unicode_compatible
     def __str__(self):
         return self.name
 
 
+@python_2_unicode_compatible
 class Manifesto(TimeStampedModel):
     name = models.CharField(max_length=255)  # needs html tag functionality
     creator = models.TextField(blank=True)
@@ -78,7 +79,6 @@ class Manifesto(TimeStampedModel):
     def get_absolute_url(self):
         return reverse('manifestos:detail', args=[str(self.pk)])
 
-    @python_2_unicode_compatible
     def __str__(self):
         return self.name
 

@@ -17,7 +17,8 @@ class TwitterBot(object):
     """
     Creates tweets for the Digital Manifest Twitter Bot.
     """
-    def get_auth(self):
+    @staticmethod
+    def get_auth():
         auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
         auth.set_access_token(TWITTER_ACCESS_KEY, TWITTER_ACCESS_SECRET)
         return auth

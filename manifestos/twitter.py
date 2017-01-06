@@ -15,6 +15,14 @@ class TwitterBotException(Exception):
 
 
 def escape_sms_commands(text):
+    """
+    Twitter allow 'special commands' to be sent via a tweet:
+     https://support.twitter.com/articles/14020
+    Since any tweet starting with these commands will try to run the command
+     rather than actually updating our status, we need to turn off this behavior
+     by adding a fancy zero-width whitespace character in front of our text.
+    See: http://stackoverflow.com/questions/19969275
+    """
     pattern = re.compile(
         r'^(ON|OFF|FOLLOW|F|UNFOLLOW|LEAVE|L|STOP|QUIT|END|CANCEL|'
         r'UNSBSCRIBE|ARRET|D|M|RETWEET|RT|SET|WHOIS|W|GET|G|FAV|FAVE|'
@@ -27,6 +35,10 @@ def escape_sms_commands(text):
 class TwitterBot(object):
     """
     Creates tweets for the Digital Manifest Twitter Bot.
+
+    Usage:
+    `bot = TwitterBot()`
+    `bot.tweet('My First Tweet!')`
     """
     @staticmethod
     def get_auth():

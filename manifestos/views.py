@@ -32,10 +32,10 @@ class ManifestoDetailView(generic.DetailView):
 class CollectionListView(generic.ListView):
     model = models.Collection
     prefetch_qs = models.Manifesto.objects.defer('text')
-    prefetch = Prefetch('manifestos', queryset=prefetch_qs)
+    prefetch = Prefetch('manifesto_set', queryset=prefetch_qs)
     queryset = models.Collection.objects.prefetch_related(prefetch)
 
 
 class CollectionDetailView(PrefetchRelatedMixin, generic.DetailView):
     model = models.Collection
-    prefetch_related = ['manifestos', 'manifestos__tags']
+    prefetch_related = ['manifesto_set', 'manifesto_set__tags']

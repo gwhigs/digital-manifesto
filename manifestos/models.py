@@ -40,7 +40,7 @@ class Collection(TimeStampedModel):
         return reverse('manifestos:collection_detail', args=[str(self.id)])
 
     def get_most_recent_manifesto(self):
-        return self.manifestos.first()
+        return self.manifesto_set.first()
 
     def __str__(self):
         return self.name
@@ -69,9 +69,10 @@ class Manifesto(TimeStampedModel):
     added = models.DateTimeField(null=True, blank=True)
     subject = models.CharField(max_length=255, blank=True)
     text = models.TextField(blank=True)  # needs html tag functionality
-    collection = models.ForeignKey(
+    collection = models.ForeignKey(  # DEPRECATED - use `collections`
         Collection, null=True, blank=True, related_name='manifestos'
     )
+    collections = models.ManyToManyField(Collection, blank=True)
     tags = TaggableManager(blank=True)
     featured = FeaturedField()
     history = HistoricalRecords()

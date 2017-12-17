@@ -35,6 +35,8 @@
     <p>{{ manifesto.creator }}</p>
     <h3>Source</h3>
     <p><a href="{{ manifesto.source }}">{{ manifesto.source }}</a></p>
+    <h3>Rights</h3>
+    <p>{{ manifesto.rights|urlize|default:"None" }}</p>
     <h3>Date</h3>
     <p>{{ manifesto.date }}</p>
     <h3>Language</h3>

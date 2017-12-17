@@ -41,8 +41,8 @@
     <p>{{ manifesto.date }}</p>
     <h3>Language</h3>
     <p>{{ manifesto.language|upper }}</p>
-    <h3>Collection</h3>
-    <a href="{{ manifesto.collection.get_absolute_url }}"><p>{{ manifesto.collection.name }}</p></a>
+    <h3>Collections</h3>
+    {% for collection in manifesto.collections.all %}<a href="{{ collection.get_absolute_url }}"><p>{{ collection.name }}</p></a>{% if not forloop.last %}, {% endif %}{% endfor %}
     <h3>Tags</h3>
     <p>{{ manifesto.tags.all|join:", " }}</p>
 </div>

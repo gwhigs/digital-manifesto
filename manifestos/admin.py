@@ -11,6 +11,7 @@ from .models import Manifesto, Collection, Tweet
 class ManifestoAdmin(SimpleHistoryAdmin):
     search_fields = ('name',)
     list_display = ('name', )
+    exclude = ('collection',)
 
 
 @admin.register(Collection)

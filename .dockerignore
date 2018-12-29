@@ -1,0 +1,13 @@
+.DS_Store
+.dockerignore
+.git/
+.gitignore
+README.rst
+README.md
+*.pyc
+__pycache__
+
+etc/
+.idea/
+Vagrantfile
+Procfile
